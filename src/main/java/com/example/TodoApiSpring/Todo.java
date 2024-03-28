@@ -1,10 +1,10 @@
 package com.example.TodoApiSpring;
 
 public class Todo{
-	private int id;
+	private Integer id;
 	private boolean completed;
 	private String title;
-	private int userId;
+	private Integer userId;
 
 	public Todo(int id, boolean completed, String title, int userId) {
 		this.id = id;
@@ -41,7 +41,7 @@ public class Todo{
 		this.userId = userId;
 	}
 
-	public int getUserId(){
+	public Integer getUserId(){
 		return userId;
 	}
 
