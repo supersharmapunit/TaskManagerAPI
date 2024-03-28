@@ -1,9 +1,8 @@
 package com.example.TodoApiSpring;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,13 +19,14 @@ public class TodoController {
     }
 
     @GetMapping("/todos")
-    public List<Todo> getTodoList() {
-        return todoList;
-    }
+    public ResponseEntity<List<Todo>> getTodoList() {
+        return ResponseEntity.ok(todoList);
+    } // this is one way using ResponseEntity
 
+//    @ResponseStatus(HttpStatus.CREATED) -> we can use this annotation to send response status back to the client, but this is not the only way
     @PostMapping("/todos")
-    public Todo createTodo(@RequestBody Todo newTodo) {
+    public ResponseEntity<Todo> createTodo(@RequestBody Todo newTodo) {
         todoList.add(newTodo);
-        return newTodo;
+        return ResponseEntity.status(HttpStatus.CREATED).body(newTodo); // this is another way using ResponseEntity
     }
 }
